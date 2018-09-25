@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>二进制游戏</title>
+	<style type="text/css">
+		body{
+			width: 100%;position: absolute;top: 0;bottom: 0;margin: 0;background-color: #f9f9f9;display: flex;
+			flex-direction: column;
+		}
+		.title{
+			display: flex;
+			width: 80%;
+			margin: 0 auto;
+			height: 10%;
+			background-color: #fff;
+			justify-content: left;
+    		align-items: center;
+    		font-size: 25px;
+    		letter-spacing: 20px;
+		}
+		.container{
+			background-color: #fff;width: 80%;margin: 0 auto;height: 85%;display: flex;flex-direction: row;
+			padding-bottom: 5%
+		}
+		.left{
+			display: block;
+			width: 70%;
+			height: 100%;
+			
+		}
+		.right{
+			display: flex;
+			width: 30%;
+			height: 100%;
+			flex-direction: row;
+		}
+		.left .group{
+			height: 25%;
+			width: 100%;
+			background-size:100% 100%;
+		}
+		.selector{
+			display: block;
+			height: 100%;
+			width: 60%;
+		}
+		.selector .group{
+			display: flex;
+			height: 25%;
+			width: 100%;
+			background-size:100% 100%;
+			align-items: center;
+			justify-content: center;
+		}
+		.submit{
+			display: flex;
+			height: 100%;
+			width: 40%;
+			align-items: center;
+			justify-content: center;
+		}
+		.circle{
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+		}
+	</style>
+	<script type="text/javascript">
+		var result = 0;
+		function select(id){
+			var color =  document.getElementById(id).style.backgroundColor;
+			console.log(color)
+			if(color == 'rgb(42, 202, 42)'){
+				document.getElementById(id).style.backgroundColor = "red";
+				
+			}else{
+				document.getElementById(id).style.backgroundColor = "#2aca2a";
+			}
+
+			switch(id){
+				case 'group1':
+					result = result ^ 1;
+					break;
+				case 'group2':
+					result = result ^ 2;
+					break;
+				case 'group3':
+					result = result ^ 4;
+					break;
+				case 'group4':
+					result = result ^ 8;
+					break;
+			}
+			console.log(result);
+		}
+
+		function submit(){
+			var url = "./result.html?result=" + result;
+			window.open(url,'_self');
+		}
+		
+	</script>
+</head>
+<body>
+	<div class="title"><span style="position: relative;left: 250px;font-style: oblique;color: blue;text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;">大家一起猜生肖</span></div>
+	<div class="container">
+		<div class="left">
+			<div class="group" style="background-image: url(group1.png);"></div>
+			<div class="group" style="background-image: url(group2.png);"></div>
+			<div class="group" style="background-image: url(group3.png);"></div>
+			<div class="group" style="background-image: url(group4.png);"></div>
+		</div>
+		<div class="right">
+			<div class="selector">
+				<div class="group"><a href="javascript:void(0)" onclick="select('group1')"><div class="circle" id="group1" style="background-color: #2aca2a;"></div></a></div>
+				<div class="group"><a href="javascript:void(0)" onclick="select('group2')"><div class="circle" id="group2" style="background-color: #2aca2a;"></div></a></div>
+				<div class="group"><a href="javascript:void(0)" onclick="select('group3')"><div class="circle" id="group3" style="background-color: #2aca2a;"></div></a></div>
+				<div class="group"><a href="javascript:void(0)" onclick="select('group4')"><div class="circle" id="group4" style="background-color: #2aca2a;"></div></a></div>
+			</div>
+			<div class="submit"><button style="width: 100px;height: 50px;font-size: 20px;background: linear-gradient(135deg, #6e8efb, #a777e3);border-radius: 15px;" onclick="submit()">提交</button></div>
+			
+		</div>
+	</div>
+</body>
+</html>
